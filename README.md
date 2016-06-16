@@ -1,4 +1,4 @@
 # Gator
 Gator theme for ContentBox
 
-![open theme preview](https://github.com/contentbox-themes/gator/blob/master/screenshot.png)
+![open theme preview](https://raw.githubusercontent.com/contentbox-themes/gator/master/screenshot.png)
