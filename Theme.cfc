@@ -147,7 +147,7 @@ component{
 	*/
 	private function generatePageContentStackFields(){
 		var aFieldKeys 			= [ "bgColor", "alignment","vcenter" ];
-		var pageSectionCatName 	= settingService.getSetting("cb_theme_simplicity_sec2Category");
+		var pageSectionCatName 	= settingService.getSetting("cb_theme_gator_sec2Category");
 		
 		// is there a category selected
 		if( pageSectionCatName != "none" ){
