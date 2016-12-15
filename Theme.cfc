@@ -70,9 +70,9 @@ component{
 	// Layout Variables
     this.name       	= "ContentBox Gator Theme";
 	this.description 	= "ContentBox Gator layout for ContentBox 3 based on Bootstrap 3";
-	this.version		= "1.0.0";
+    this.version        = "@build.version@+@build.number@";
 	this.author 		= "Ortus Solutions";
-	this.authorURL		= "http://www.ortussolutions";
+	this.authorURL		= "httpw://www.ortussolutions.com";
 	// Screenshot URL, can be absolute or locally in your layout package.
 	this.screenShotURL	= "screenshot.png";
 	
