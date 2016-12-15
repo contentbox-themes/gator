@@ -29,6 +29,10 @@ script:
 
 # Deploy assets to S3
 deploy:
+  on:
+    branch:
+      - master
+      - development
   skip_cleanup: true
   provider: s3
   access_key_id: $AWS_ACCESS_KEY
