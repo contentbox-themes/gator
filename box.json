@@ -4,7 +4,7 @@
     "slug":"cbtheme-gator",
     "location"  : "http://downloads.ortussolutions.com/ortussolutions/contentbox-themes/gator/@build.version@/gator-@build.version@.zip",
     "author":"Ortus Solutions",
-    "homepage":"http://www.ortussolutions.com/products/contentbox",
+    "homepage":"https://www.ortussolutions.com/products/contentbox",
     "documentation":"https://github.com/contentbox-themes/gator",
     "repository":{
         "type":"git",
