@@ -88,8 +88,8 @@ component{
 			
 			{ name="headerLogo", 			group="Header", defaultValue="", 		type="text", 	label="Logo URL:", groupIntro="Customize the header section of your theme.", 	fieldDescription="Enter a relative or full url for the website logo. Recommended dimensions: 300x50."  },
 			
-			{ name="headerTopNav", 			group="Header", defaultValue="none", 		type="select", 	label="Top Navigation:", options="none,#menus()#", fieldDescription="Select a menu for the Top Navigation (top right corner of the header)."},
-			{ name="headerMainNav", 		group="Header", defaultValue="none", 		type="select", 	label="Main Navigation:", options="none,#menus()#", fieldDescription="Select a menu for the Main Navigation."},
+			{ name="headerTopNav", 			group="Header", defaultValue="none", 		type="select", 	label="Top Navigation:",  optionsUDF="menus", fieldDescription="Select a menu for the Top Navigation (top right corner of the header)."},
+			{ name="headerMainNav", 		group="Header", defaultValue="none", 		type="select", 	label="Main Navigation:", optionsUDF="menus", fieldDescription="Select a menu for the Main Navigation."},
 		
 			{ name="locAddress", 			group="Location", defaultValue="", 		type="text", 	label="Address:" },
 			{ name="locCity", 				group="Location", defaultValue="", 		type="text", 	label="City:" },
@@ -97,9 +97,9 @@ component{
 			{ name="locZip", 				group="Location", defaultValue="", 		type="text", 	label="Zip:" },
 			{ name="locPhone", 				group="Location", defaultValue="", 		type="text", 	label="Phone:" },
 			
-			{ name="sec1Category", 			group="Slideshow", defaultValue="none", 	type="select", 		label="Content Category:", options="none,#entryCategories()#", groupIntro="Customize the slider that appears in the homepage.", fieldDescription="Select the content store category.", fieldHelp="#loadHelpFile( 'contentStoreSlider.html' )#" },
+			{ name="sec1Category", 			group="Slideshow", defaultValue="none", 	type="select", 		label="Content Category:", optionsUDF="entryCategories", groupIntro="Customize the slider that appears in the homepage.", fieldDescription="Select the content store category.", fieldHelp="#loadHelpFile( 'contentStoreSlider.html' )#" },
 			
-			{ name="sec2Category", 			group="Section 2", defaultValue="none", 	type="select", 		label="Content Category:", options="none,#entryCategories()#", groupIntro="Display content from pages in homepage.", fieldDescription="Select the page category.", fieldHelp="#loadHelpFile( 'pageContentStack.html' )#"  },
+			{ name="sec2Category", 			group="Section 2", defaultValue="none", 	type="select", 		label="Content Category:", optionsUDF="entryCategories", groupIntro="Display content from pages in homepage.", fieldDescription="Select the page category.", fieldHelp="#loadHelpFile( 'pageContentStack.html' )#"  },
 					
 			{ name="rssDiscovery", 			group="Homepage", 	defaultValue="true", 	type="boolean",		label="Active RSS Discovery Links", 	required="false" },
 			
@@ -207,16 +207,18 @@ component{
 	/**
 	* Gets names of categories
 	*/
-	private string function entryCategories() {
+	string function entryCategories() {
 		var categoryList = arraytoList( categoryService.getAllNames() );
+		categoryList = ListPrepend( categoryList, "none" );
 		return categoryList;
 	}
 	
 	/**
 	* Gets all menu slugs
 	*/
-	private string function menus() { 
+	string function menus() { 
 		var menuList = arraytoList( menuService.getAllSlugs() );
+		menuList = ListPrepend( menuList, "none" );
 		return menuList;
 	}
 }
