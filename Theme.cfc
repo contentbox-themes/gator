@@ -68,6 +68,7 @@ component{
  	property name="menuService" 	inject="id:MenuService@cb";
  	property name="categoryService" inject="id:CategoryService@cb";
  	property name="pageService" 	inject="id:PageService@cb";
+ 	property name="customFieldService" inject="customFieldService@cb";
  	
  	 
 	// Layout Variables
@@ -180,26 +181,23 @@ component{
 		if( pageSectionCatName != "none" ){
 			var oCategory = categoryService.findWhere( criteria={category=pageSectionCatName} );
 			var sPages = pageService.search( category=oCategory.getCategoryID(), sortOrder="order" );
-			
-			for ( var page in sPages.pages ) {
-				var sfields = page.getCustomFieldsAsStruct();
-					
-				for ( var field in aFieldKeys ) {
-			
-					// if page does not have field	
-					if( !structKeyExists( sfields, field  ) ){
-							
-						// create field
-						transaction{
-							var newCustomField = EntityNew( 'cbCustomField' );
-							newCustomField.setKey( field );
-							newCustomField.setValue( "" );
-							newCustomField.setRelatedContent( page );
+			transaction{
+				for ( var page in sPages.pages ) {
+					var sfields = page.getCustomFieldsAsStruct();
+						
+					for ( var field in aFieldKeys ) {
+				
+						// if page does not have field	
+						if( !structKeyExists( sfields, field  ) ){
 								
-							EntitySave( entity=newCustomField );
+							// create field
+								var args = { key = field, value = "" };
+								var oField = customFieldService.new(properties=args);
+								oField.setRelatedContent( page );
+								customFieldService.save(oField);
 						}
-					}
-				}		
+					}		
+				}
 			}
 		}
 	}
